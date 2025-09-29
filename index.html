@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> My Love Blessing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      color: #fff;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      padding: 80px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      margin: 0;
+      animation: fadeIn 3s ease;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      animation: fadeIn 4s ease;
+    }
+
+    .love-btn {
+      margin-top: 40px;
+      font-size: 3rem;
+      cursor: pointer;
+      animation: heartbeat 1.5s infinite;
+      display: inline-block;
+    }
+
+    .love-btn:hover {
+      transform: scale(1.3);
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.3); }
+      40% { transform: scale(1); }
+      60% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    section {
+      padding: 40px 20px;
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: all 1s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 30px;
+      margin: 20px auto;
+      max-width: 600px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      border: 2px solid;
+      border-image-slice: 1;
+      border-width: 2px;
+      border-image-source: linear-gradient(45deg, #ff758c, #ff7eb3, #fad0c4);
+    }
+
+    .card h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fbc2eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Floating hearts */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      color: rgba(255, 0, 80, 0.8);
+      animation: floatUp 12s linear infinite;
+      text-shadow: 0 0 10px rgba(255,0,80,0.6);
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(100vh) scale(0.5); opacity: 0.9; }
+      to { transform: translateY(-10vh) scale(1.3); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Love, Blessing ❤️</h1>
+    <p>You are the reason my world feels magical.</p>
+    <div class="love-btn" id="loveBtn">❤️</div>
+  </header>
+
+  <section id="loveSection">
+    <div class="card">
+      <h2>Forever Us</h2>
+      <p>Every heartbeat of mine whispers your name. You’re my today, my tomorrow, and my always.</p>
+    </div>
+
+    <div class="card">
+      <h2>My Promise</h2>
+      <p>I promise to love you endlessly, to support your dreams, and to stand by your side through every chapter of our story.</p>
+    </div>
+
+    <div class="card">
+      <h2>Our Journey</h2>
+      <p>Each day with you is a new page filled with laughter, love, and memories that will last forever.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Made with ❤️ by Edmond, for Blessing</p>
+  </footer>
+
+  <!-- Particle container -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Romantic Background Music -->
+  <audio autoplay loop hidden>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const loveBtn = document.getElementById('loveBtn');
+    const loveSection = document.getElementById('loveSection');
+    const particlesContainer = document.getElementById('particles');
+
+    // Show cards when pressing love button
+    loveBtn.addEventListener('click', () => {
+      loveSection.classList.add('show');
+      loveSection.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Generate floating hearts
+    function createHearts() {
+      for (let i = 0; i < 8; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+        heart.style.animationDuration = (6 + Math.random() * 8) + 's';
+        particlesContainer.appendChild(heart);
+
+        setTimeout(() => {
+          particlesContainer.removeChild(heart);
+        }, 14000);
+      }
+    }
+
+    setInterval(createHearts, 2000);
+  </script>
+</body>
+</html>
